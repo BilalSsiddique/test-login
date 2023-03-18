@@ -66,7 +66,7 @@ form{
     
 }
 
-input[type='email'],input[type='text']{
+input[type='email'],input[type='password'],input[type='text']{
     display: flex;
     align-items: center;
     padding: 10px 16px;
@@ -86,7 +86,12 @@ input[type='email'],input[type='text']{
     justify-content:space-evenly;
     align-items: center;
     width: 90%;
-    
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.check-forgsc{
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 .check-forg label{
     font-size: 13px;
@@ -95,13 +100,26 @@ input[type='email'],input[type='text']{
 }
 .check-forg label input{
     margin-right: 5px;
+
     
 }
-.check-forg p{
+.link{
     color: #793EF5;
     font-size: 13px;
     font-weight: 600;
+}
 
+.forgot{
+    text-decoration: none;
+        /* margin:  */
+        font-weight: 900;
+        font-size: 14px;
+}
+.route{
+    text-decoration: none;
+    margin: 5px 0px 0px 235px;
+    font-weight: 900;
+    font-size: 14px;
 }
 button[type='submit']{
     background: #793EF5;

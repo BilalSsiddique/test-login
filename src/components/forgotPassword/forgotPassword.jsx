@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import "./login.css";
+import "../login/login.css";
 import { Link } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+// import {app, database} from '..';
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { toast } from "react-toastify";
 
-const Loginscreen = () => {
+const ForgotPassword = () => {
   const [data, setData] = useState({
     email: "",
-    password: "",
   });
   const auth = getAuth();
 
   const handleInputs = (event) => {
+    
     console.log("handleInputs");
     let inputs = { [event.target.name]: event.target.value };
     setData({ ...data, ...inputs });
@@ -20,9 +21,9 @@ const Loginscreen = () => {
   const handleSubmit = (event) => {
     console.log("render");
     event.preventDefault();
-    signInWithEmailAndPassword(auth, data.email, data.password)
-      .then((res) => {
-        toast.success("Successfully Log In");
+    sendPasswordResetEmail(auth, data.email)
+      .then(() => {
+        toast.success("Email sent Succesfully");
       })
       .catch((err) => {
         toast.error(err.message);
@@ -38,36 +39,22 @@ const Loginscreen = () => {
         >
           <div className="form-inputs">
             <label id="label" htmlFor="login">
-              Login
+              Email
             </label>
 
             <input
               onChange={(event) => handleInputs(event)}
               type="email"
               name="email"
-              placeholder="Email"
-            />
-            <input
-              onChange={(event) => handleInputs(event)}
-              type="password"
-              name="password"
-              placeholder="Password"
+              placeholder="Enter Email"
             />
           </div>
-          <div className="check-forg">
-            <label>
-              <input type="checkbox" value="Remember me" />
-              Remember me
-            </label>
-            <Link to="/forgotpassword" className="link forgot">
-              Forgot Password
-            </Link>
-          </div>
+          <div className="check-forgsc"></div>
           <div>
-            <button type="submit">Login</button>
+            <button type="submit">Reset Password</button>
           </div>
-          <Link to="/" className="link route">
-            Sign Up?
+          <Link to="/login" className="link route">
+            Login?
           </Link>
         </form>
       </div>
@@ -75,4 +62,4 @@ const Loginscreen = () => {
   );
 };
 
-export default Loginscreen;
+export default ForgotPassword;
